@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Gopher Strike Zones</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      margin: 10px 0;
+    }
+
+    select {
+      padding: 8px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    iframe {
+      display: block;
+      margin: 0 auto;
+      border: none;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <h1>Strike Zone Visualizations</h1>
+
+  <label for="playerSelect">Choose a player:</label>
+  <select id="playerSelect" onchange="loadPlayer()">
+    <option value="">--Select Player--</option>
+    <option value="strike_zones/Brayden_Hellum.html">Brayden Hellum</option>
+    <option value="strike_zones/Charlie_Sutherland.html">Charlie Sutherland</option>
+    <option value="strike_zones/Easton_Richter.html">Easton Richter</option>
+    <option value="strike_zones/Jack_Mosh.html">Jack Mosh</option>
+    <option value="strike_zones/Jack_Spanier.html">Jack Spanier</option>
+    <option value="strike_zones/Jake_Elbeery.html">Jake Elbeery</option>
+    <option value="strike_zones/Jake_Quinn.html">Jake Quinn</option>
+    <option value="strike_zones/Jameson_Martin.html">Jameson Martin</option>
+    <option value="strike_zones/Sam_Hunt.html">Sam Hunt</option>
+    <option value="strike_zones/Weber_Neels.html">Weber Neels</option>
+    <option value="strike_zones/Will_Whelan.html">Will Whelan</option>
+  </select>
+
+  <iframe id="playerFrame" src=""></iframe>
+
+  <script>
+    function loadPlayer() {
+      const player = document.getElementById("playerSelect").value;
+      if (player) {
+        document.getElementById("playerFrame").src = player;
+      }
+    }
+
+    function resizeIframe() {
+      const h1Height = document.querySelector('h1').offsetHeight;
+      const selectHeight = document.querySelector('select').offsetHeight;
+      const padding = 40; // extra padding
+      const availableHeight = window.innerHeight - h1Height - selectHeight - padding;
+      document.getElementById('playerFrame').style.height = availableHeight + 'px';
+    }
+
+    window.addEventListener('resize', resizeIframe);
+    window.addEventListener('load', resizeIframe);
+  </script>
+</body>
+</html>
